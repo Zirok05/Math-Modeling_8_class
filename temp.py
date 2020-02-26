@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import ArtistAnimation
 t = np.arange(10**(-7), 1.5*10**(-7), 10**(-9))
 a = 0.008
-v = 4*10**6
+v = 2*10**6
 k = 9*10**9
 def GG(s, t):  
     (x1, v_x1, y1, v_y1,
@@ -59,7 +59,7 @@ def GG(s, t):
     return(dxdt1,dv_xdt1,dydt1,dv_ydt1,
            dxdt2,dv_xdt2,dydt2,dv_ydt2,
            dxdt3,dv_xdt3,dydt3,dv_ydt3,
-            dxdt4,dv_xdt4,dydt4,dv_ydt4)
+           dxdt4,dv_xdt4,dydt4,dv_ydt4)
     
     
 x01 = -a
@@ -84,20 +84,20 @@ v_y04 = -v/2**0.5
 
 s0 = (x01,v_x01,y01,v_y01,
       x02,v_x02,y02,v_y02,
-      x03,v_x01,y03,v_y03,
+      x03,v_x03,y03,v_y03,
       x04,v_x04,y04,v_y04)
 
 m1 = 1.1*10**(-27)
-q1 = 1.1*10**(-13)
+q1 = 1.1*10**(-14)
 
 m2 = 1.1*10**(-27)
-q2 = 1.1*10**(-13)
+q2 = - 1.1*10**(-14)
 
 m3 = 1.1*10**(-27)
-q3 = 1.1*10**(-13)
+q3 = -1.1*10**(-14)
 
 m4 = 1.1*10**(-27)
-q4 = 1.1*10**(-13)
+q4 = - 1.1*10**(-14)
 
 sol = odeint(GG,s0,t)
 
