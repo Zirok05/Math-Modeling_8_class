@@ -1,11 +1,22 @@
-import numpy as np
-from scipy.integrate import odeint
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d  import Axes3D
+sol = odeint(PPC,z0,t)
+
 fig = plt.figure()
-ax = fig.gca(projection='3d')
-t = np.arange(0,3*np.pi,0.01)
-x = 2**(-0.1*t)*np.cos(t)
-y = 2**(-0.1*t)*np.sin(t)
-z = -t
-ax.plot(x,y,z)
+planets = []
+
+for i in range(0, len(t), 1):
+    
+    sun, = plt.plot([0], [0], 'yo', ms=10)
+    
+    neptun, = plt.plot(sol[:i, 0], sol[:i,2], 'r-')
+    neptun_line, = plt.plot(sol[i,0], sol[i,2], 'ro')
+    
+    plyton, = plt.plot(sol[:i,4], sol[:i,6], 'b-')
+    plyton_line, = plt.plot(sol[i,4], sol[i,6], 'bo')
+    
+    planets.append([sun,neptun,neptun_line,plyton,plyton_line])
+    
+ani = ArtistAnimation(fig,planets,interval = 50)
+plt.axis('equal')
+ani.save('neptun_plyton.gif')
+
+
